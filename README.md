@@ -1,21 +1,21 @@
 
 
-![dotfiles-logo](https://github.com/TechDufus/dotfiles/assets/46715299/6c1d626d-28d2-41e3-bde5-981d9bf93462)
+![dotfiles-logo](https://github.com/PhDbuilds/dotfiles/assets/46715299/6c1d626d-28d2-41e3-bde5-981d9bf93462)
 <p align="center">
-    <a href="https://github.com/TechDufus/dotfiles/actions/workflows/ansible-lint.yml"><img align="center" src="https://github.com/TechDufus/dotfiles/actions/workflows/ansible-lint.yml/badge.svg"/></a>
-    <a href="https://github.com/TechDufus/dotfiles/issues"><img align="center" src="https://img.shields.io/github/issues/techdufus/dotfiles"/></a>
-    <a href="https://github.com/sponsors/TechDufus"><img align="center" src="https://img.shields.io/github/sponsors/techdufus"/></a>
+    <a href="https://github.com/PhDbuilds/dotfiles/actions/workflows/ansible-lint.yml"><img align="center" src="https://github.com/PhDbuilds/dotfiles/actions/workflows/ansible-lint.yml/badge.svg"/></a>
+    <a href="https://github.com/PhDbuilds/dotfiles/issues"><img align="center" src="https://img.shields.io/github/issues/techdufus/dotfiles"/></a>
+    <a href="https://github.com/sponsors/PhDbuilds"><img align="center" src="https://img.shields.io/github/sponsors/techdufus"/></a>
     <a href="https://discord.gg/5M4hjfyRBj"><img align="center" src="https://img.shields.io/discord/905178979844116520.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2"/></a>
-    <a href="https://github.com/TechDufus/dotfiles/commits/main"><img align="center" src="https://img.shields.io/github/commit-activity/m/techdufus/dotfiles" alt="commit frequency"></a>
+    <a href="https://github.com/PhDbuilds/dotfiles/commits/main"><img align="center" src="https://img.shields.io/github/commit-activity/m/techdufus/dotfiles" alt="commit frequency"></a>
 </p>
 
 ---
-Fully automated development environment for [TechDufus](https://www.twitch.tv/TechDufus) on Twitch.
+Fully automated development environment for [PhDbuilds](https://www.twitch.tv/PhDbuilds) on Twitch.
 
 You can watch a quick 'tour' (pre-1Password integration) here on YouTube:
 
 <a href="https://youtu.be/hPPIScBt4Gw">
-    <img src="https://github.com/TechDufus/dotfiles/assets/46715299/b114ea0c-b67b-437b-87d3-7c7732aeccf8" alt="Automating your Dotfiles with Ansible: A Showcase" style="width:60%;"/>
+    <img src="https://github.com/PhDbuilds/dotfiles/assets/46715299/b114ea0c-b67b-437b-87d3-7c7732aeccf8" alt="Automating your Dotfiles with Ansible: A Showcase" style="width:60%;"/>
 </a>
 
 This repo is heavily influenced by [ALT-F4-LLC](https://github.com/ALT-F4-LLC/dotfiles)'s repo. Go check it out!
@@ -214,12 +214,12 @@ This shell script is also used to initialize your environment after bootstrappin
 > You must follow required steps before running this command or things may become unusable until fixed.
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/TechDufus/dotfiles/main/bin/dotfiles)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/PhDbuilds/dotfiles/main/bin/dotfiles)"
 ```
 
 If you want to run only a specific role, you can specify the following bash command:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/TechDufus/dotfiles/main/bin/dotfiles | bash -s -- --tags comma,seperated,tags
+curl -fsSL https://raw.githubusercontent.com/PhDbuilds/dotfiles/main/bin/dotfiles | bash -s -- --tags comma,seperated,tags
 ```
 
 ### Update

@@ -54,17 +54,17 @@ default_roles:
   - zoxide
   - zsh
 
-git_user_name: "TechDufus"
+git_user_name: "PhDbuilds"
 op:
   git:
     user:
-      email: "op://Personal/TechDufus GitHub/email"
-    allowed_signers: "op://Personal/TechDufus SSH/allowed_signers"
+      email: "op://Personal/PhDbuilds GitHub/email"
+    allowed_signers: "op://Personal/PhDbuilds SSH/allowed_signers"
   ssh:
     github:
-      techdufus:
+      phdbuilds:
         - name: id_ed25519
-          vault_path: "op://Personal/TechDufus SSH"
+          vault_path: "op://Personal/PhDbuilds SSH"
         - name: raft-infra
           vault_path: "op://Raft/Raft-SSH"
 # FIXME: See `system/tasks/main.yml` for how to structure this var looping.
