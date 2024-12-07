@@ -20,13 +20,6 @@
     scope: global
     value: true
 
-# git config --global --add url."git@github.com:".insteadOf "https://github.com/"
-# - name: "Git | Set URL to SSH"
-#   community.general.git_config:
-#     name: URL
-#     scope: global
-#     value: "git@github.com"
-
 - name: "Git | Set init.defaultBranch"
   community.general.git_config:
     name: init.defaultBranch
@@ -45,18 +38,19 @@
     scope: global
     value: true
 
-- name: "Git | Read user.email secret from 1Password"
-  when: op_installed
+- name: "Git | Read user.email secret from Bitwarden"
+  when: bw_installed
   block:
-    - name: "1Password | Get user.email"
-      ansible.builtin.command: "op --account my.1password.com read '{{ op.git.user.email }}'"
-      register: op_git_user_email
+    - name: "Bitwarden | Get user.email"
+      ansible.builtin.command:
+        cmd: "bw get item 'Github' --session $BW_SESSION | jq -r '.fields[] | select(.name==\"email\") | .value'"
+      register: bw_git_user_email
       changed_when: false
-      # no_log: true
+      no_log: true
 
-    - name: "1Password | Set git_user_email"
+    - name: "Bitwarden | Set git_user_email"
       ansible.builtin.set_fact:
-        git_user_email: "{{ op_git_user_email.stdout }}"
+        git_user_email: "{{ bw_git_user_email.stdout }}"
       no_log: true
 
 - name: "Git | Set user.email"
@@ -65,6 +59,21 @@
     scope: global
     value: "{{ git_user_email }}"
   no_log: true
+
+- name: "Git | Read user.name secret from Bitwarden"
+  when: bw_installed
+  block:
+    - name: "Bitwarden | Get user.name"
+      ansible.builtin.command:
+        cmd: "bw get item 'Github' --session $BW_SESSION | jq -r '.fields[] | select(.name==\"username\") | .value'"
+      register: bw_git_user_name
+      changed_when: false
+      no_log: true
+
+    - name: "Bitwarden | Set git_user_name"
+      ansible.builtin.set_fact:
+        git_user_name: "{{ bw_git_user_name.stdout }}"
+      no_log: true
 
 - name: "Git | Set user.name"
   community.general.git_config:
@@ -102,25 +111,26 @@
     state: directory
     mode: "0755"
 
-- name: "Git | Read allowed_signers secret from 1Password"
-  when: op_installed
+- name: "Git | Read allowed_signers secret from Bitwarden"
+  when: bw_installed
   block:
-    - name: "1Password | Get allowed_signers"
-      ansible.builtin.command: "op read '{{ op.git.allowed_signers }}'"
-      register: op_git_ssh_allowed_signers
+    - name: "Bitwarden | Get allowed_signers"
+      ansible.builtin.command:
+        cmd: "bw get item 'Github' --session $BW_SESSION | jq -r '.notes'"
+      register: bw_git_ssh_allowed_signers
       changed_when: false
       no_log: true
 
-    - name: "1Password | Configure ~/.config/git/allowed_signers"
+    - name: "Bitwarden | Configure ~/.config/git/allowed_signers"
       ansible.builtin.lineinfile:
         path: "{{ ansible_user_dir }}/.config/git/allowed_signers"
-        line: "{{ op_git_ssh_allowed_signers.stdout }}"
+        line: "{{ bw_git_ssh_allowed_signers.stdout }}"
         mode: "0600"
         create: true
       no_log: true
 
 - name: "Git | Configure ~/.config/git/allowed_signers"
-  when: not op_installed
+  when: not bw_installed
   ansible.builtin.copy:
     src: allowed_signers
     dest: "{{ ansible_user_dir }}/.config/git/allowed_signers"
@@ -149,3 +159,4 @@
     name: commit.template
     scope: global
     value: "{{ ansible_user_dir }}/.config/git/commit_template"
+
