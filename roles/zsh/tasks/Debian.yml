@@ -14,7 +14,7 @@
 - name: "Zsh | Install ohmyzsh"
   ansible.builtin.script:
     cmd: "/home/{{ ansible_user_id }}/install.sh"
-    creates: "/home/{{ ansible_user_id }}/install.sh"
+    creates: "/home/{{ ansible_user_id }}/.oh-my-zsh"
 
 - name: "Zsh | Create fonts directory"
   ansible.builtin.file:
@@ -27,6 +27,12 @@
   ansible.builtin.get_url:
     url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Meslo.zip
     dest: "/home/{{ ansible_user_id }}/Meslo.zip"
+
+- name: "Zsh | Create Meslo extraction directory"
+  ansible.builtin.file:
+    path: "/home/{{ ansible_user_id }}/Meslo"
+    state: directory
+    mode: '0755'
 
 - name: "Zsh | Install font files"
   ansible.builtin.unarchive:
