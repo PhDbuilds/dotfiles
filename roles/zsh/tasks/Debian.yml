@@ -10,14 +10,11 @@
     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
     dest: "/home/{{ ansible_user_id }}/install.sh"
     mode: '0755'
-- name: Install ohmyzsh
+
+- name: "Zsh | Install ohmyzsh"
   ansible.builtin.script:
     cmd: "/home/{{ ansible_user_id }}/install.sh"
-
-- name: "Zsh | Download NerdFonts"
-  ansible.builtin.get_url:
-    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Meslo.zip
-    dest: "/home/{{ ansible_user_id }}/Meslo.zip"
+    creates: "/home/{{ ansible_user_id }}/install.sh"
 
 - name: "Zsh | Create fonts directory"
   ansible.builtin.file:
@@ -25,6 +22,11 @@
     state: directory
     mode: '0755'
   become: true
+
+- name: "Zsh | Download NerdFonts"
+  ansible.builtin.get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Meslo.zip
+    dest: "/home/{{ ansible_user_id }}/Meslo.zip"
 
 - name: "Zsh | Install font files"
   ansible.builtin.unarchive:
