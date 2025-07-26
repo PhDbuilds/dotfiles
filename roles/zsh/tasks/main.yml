@@ -16,7 +16,7 @@
 
 - name: "Oh-my-zsh | Configure Oh-my-zsh"
   ansible.builtin.copy:
-    src: oh-my-zsh
+    src: oh-my-zsh/
     dest: "{{ ansible_user_dir }}/.oh-my-zsh"
     mode: "0755"
     force: true
