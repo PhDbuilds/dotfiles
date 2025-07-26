@@ -19,14 +19,25 @@
     url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Meslo.zip
     dest: "/home/{{ ansible_user_id }}/Meslo.zip"
 
+- name: "Zsh | Create fonts directory"
+  ansible.builtin.file:
+    path: /usr/share/fonts/Meslo
+    state: directory
+    mode: '0755'
+    become: true
+
 - name: "Zsh | Install font files"
   ansible.builtin.unarchive:
     src: "/home/{{ ansible_user_id }}/Meslo.zip"
     dest: "/home/{{ ansible_user_id }}/Meslo"
+    remote_src: yes
 
 - name: "Zsh | Move font files to fonts directory"
   ansible.builtin.copy:
     src: "/home/{{ ansible_user_id }}/Meslo"
     dest: /usr/share/fonts/Meslo
     owner: root
+    mode: '0644'
+    remote_src: yes
+    recursive: yes
     become: true
