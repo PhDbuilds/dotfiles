@@ -24,7 +24,7 @@
     path: /usr/share/fonts/Meslo
     state: directory
     mode: '0755'
-    become: true
+  become: true
 
 - name: "Zsh | Install font files"
   ansible.builtin.unarchive:
@@ -40,4 +40,4 @@
     mode: '0644'
     remote_src: yes
     recursive: yes
-    become: true
+  become: true
