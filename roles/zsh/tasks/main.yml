@@ -1,0 +1,16 @@
+---
+- name: "{{ role_name }} | Run Debian-family tasks"
+  ansible.builtin.include_tasks: "Debian.yml"
+  when: ansible_os_family == "Debian"
+
+- name: "{{ role_name }} | Run Darwin tasks"
+  ansible.builtin.include_tasks: "Darwin.yml"
+  when: ansible_os_family == "Darwin"
+
+- name: "Zsh | Configure Zsh"
+  ansible.builtin.copy:
+    src: zshrc
+    dest: "{{ ansible_user_dir }}/.zshrc"
+    mode: "0644"
+    force: true
+

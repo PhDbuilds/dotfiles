@@ -1,0 +1,6 @@
+---
+- name: "Tmux | Debian-family | Install tmux"
+  ansible.builtin.apt:
+    name: tmux
+    state: present
+  become: true

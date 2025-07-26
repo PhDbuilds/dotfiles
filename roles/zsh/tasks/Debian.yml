@@ -1,0 +1,6 @@
+---
+- name: "Zsh | Debian-family | Install"
+  ansible.builtin.apt:
+    name: zsh
+    state: present
+  become: true

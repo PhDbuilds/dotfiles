@@ -1,0 +1,42 @@
+---
+- name: Configure Development Environment
+  hosts: localhost
+  connection: local
+  become: false  # Run as regular user, escalate only when needed
+
+  pre_tasks:
+    # Ensure required base packages are installed before running other roles
+    - name: Ensure required base packages are installed (Debian/Ubuntu)
+      ansible.builtin.package:
+        name:
+          - git
+          - curl
+          - software-properties-common  # Needed for adding PPAs
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Ensure Homebrew is installed (macOS)
+      ansible.builtin.stat:
+        path: /opt/homebrew/bin/brew
+      register: homebrew_check
+      when: ansible_os_family == "Darwin"
+
+    - name: Install Homebrew (macOS)
+      ansible.builtin.shell: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      when: ansible_os_family == "Darwin" and not homebrew_check.stat.exists
+      become: false
+
+
+  tasks:
+    - name: Set up Neovim
+      ansible.builtin.include_role:
+        name: neovim
+
+    - name: Set up tmux
+      ansible.builtin.include_role:
+        name: tmux
+
+    - name: Set up Zsh
+      ansible.builtin.include_role:
+        name: zsh
