@@ -15,6 +15,5 @@
     force: true
 
 - name: "Zsh | Set user shell to zsh"
-  ansible.builtin.shell: chsh -s /bin/zsh {{
-ansible_user_id }}
+  ansible.builtin.shell: chsh -s /bin/zsh {{ ansible_user_id }}
   become: true
