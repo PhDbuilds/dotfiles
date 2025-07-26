@@ -42,10 +42,9 @@
 
 - name: "Zsh | Move font files to fonts directory"
   ansible.builtin.copy:
-    src: "/home/{{ ansible_user_id }}/Meslo"
-    dest: /usr/share/fonts/Meslo
+    src: "/home/{{ ansible_user_id }}/Meslo/"
+    dest: "/usr/share/fonts/Meslo/"
     owner: root
     mode: '0644'
     remote_src: yes
-    recursive: yes
   become: true
