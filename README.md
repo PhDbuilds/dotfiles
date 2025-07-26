@@ -55,7 +55,4 @@ ansible-playbook main.yml --ask-become-pass --limit localhost --tags "neovim,tmu
 
 - **Neovim**: Modern Vim-based editor with comprehensive Lua configuration
 - **tmux**: Terminal multiplexer with custom configuration
-  - Vi-mode keybindings
-  - Custom status bar
-  - Mouse support enabled
-
+- **zsh**: Modern shell
