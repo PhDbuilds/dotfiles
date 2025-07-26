@@ -8,25 +8,25 @@
 - name: "Zsh | Download ohmyzsh"
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    dest: "/home/{{ user }}/install.sh"
+    dest: "/home/{{ ansible_user_id }}/install.sh"
     mode: '0755'
 - name: Install ohmyzsh
   ansible.builtin.script:
-    cmd: "/home/{{ user }}/install.sh"
+    cmd: "/home/{{ ansible_user_id }}/install.sh"
 
 - name: "Zsh | Download NerdFonts"
   ansible.builtin.get_url:
     url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Meslo.zip
-    dest: "/home/{{ user }}/Meslo.zip"
+    dest: "/home/{{ ansible_user_id }}/Meslo.zip"
 
 - name: "Zsh | Install font files"
   ansible.builtin.unarchive:
-    src: "/home/{{ user }}/Meslo.zip"
-    dest: "/home/{{ user }}/Meslo"
+    src: "/home/{{ ansible_user_id }}/Meslo.zip"
+    dest: "/home/{{ ansible_user_id }}/Meslo"
 
 - name: "Zsh | Move font files to fonts directory"
   ansible.builtin.copy:
-    src: "/home/{{ user }}/Meslo"
+    src: "/home/{{ ansible_user_id }}/Meslo"
     dest: /usr/share/fonts/Meslo
     owner: root
     become: true
