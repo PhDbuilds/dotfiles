@@ -3,3 +3,8 @@
   community.general.homebrew:
     name: tmux
     state: present
+
+- name: "Tmux | Install TPM"
+  ansible.builtin.git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: ~/.tmux/plugins/tpm

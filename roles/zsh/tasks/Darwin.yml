@@ -3,3 +3,19 @@
   community.general.homebrew:
     name: zsh
     state: present
+
+- name: "Zsh | Download ohmyzsh"
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: "{{ ansible_user_dir }}/install.sh"
+    mode: '0755'
+
+- name: "Zsh | Install ohmyzsh"
+  ansible.builtin.script:
+    cmd: "{{ ansible_user_dir }}/install.sh"
+    creates: "{{ ansible_user_dir }}/.oh-my-zsh"
+
+- name: "Zsh | Install Nerd Fonts via Homebrew"
+  community.general.homebrew_cask:
+    name: font-meslo-lg-nerd-font
+    state: present
