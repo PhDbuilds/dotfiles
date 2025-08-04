@@ -7,12 +7,20 @@
       - libtool
       - unzip
       - ripgrep
+      - software-properties-common
     state: present
   become: true
 
-- name: "Neovim | Debian-family | Install"
+- name: "Neovim | Debian-family | Add official Neovim PPA"
+  ansible.builtin.apt_repository:
+    repo: ppa:neovim-ppa/unstable
+    state: present
+    update_cache: true
+  become: true
+
+- name: "Neovim | Debian-family | Install latest Neovim"
   ansible.builtin.apt:
     name: neovim
-    state: present
+    state: latest
   become: true
 
