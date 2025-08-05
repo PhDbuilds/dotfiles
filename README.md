@@ -1,6 +1,7 @@
 # ansible-dev-setup
 Cross-platform development environment setup using Ansible. Supports Ubuntu, Debian, Kali Linux, and macOS.
 
+[TechDufus](https://github.com/TechDufus/dotfiles) was a huge inspiration for this project 
 ## Installation
 
 ### Prerequisites
