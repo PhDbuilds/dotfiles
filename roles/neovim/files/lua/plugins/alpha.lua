@@ -3,29 +3,59 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-
   config = function()
-    local alpha = require("alpha")
-    local dashboard = require("alpha.themes.startify")
+    local status_ok, alpha = pcall(require, "alpha")
+    if not status_ok then
+      return
+    end
+
+    local dashboard = require("alpha.themes.dashboard")
+
 
     dashboard.section.header.val = {
-      [[                                                                       ]],
-      [[                                                                       ]],
-      [[                                                                       ]],
-      [[                                                                       ]],
-      [[                                                                     ]],
-      [[       ████ ██████           █████      ██                     ]],
-      [[      ███████████             █████                             ]],
-      [[      █████████ ███████████████████ ███   ███████████   ]],
-      [[     █████████  ███    █████████████ █████ ██████████████   ]],
-      [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
-      [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
-      [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
-      [[                                                                       ]],
-      [[                                                                       ]],
-      [[                                                                       ]],
+			[[                                                                       ]],
+			[[                                                                       ]],
+			[[                                                                       ]],
+			[[                                                                       ]],
+			[[                                                                     ]],
+			[[       ████ ██████           █████      ██                     ]],
+			[[      ███████████             █████                             ]],
+			[[      █████████ ███████████████████ ███   ███████████   ]],
+			[[     █████████  ███    █████████████ █████ ██████████████   ]],
+			[[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
+			[[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
+			[[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
+			[[                                                                       ]],
+			[[                                                                       ]],
+			[[                                                                       ]],
+
+    }
+    -- ========== 2) BUTTONS ==========
+    dashboard.section.buttons.val = {
+      dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
+      dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+      dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
+      dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
+      dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.vim<CR>"),
+      dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
     }
 
+    -- ========== 3) FOOTER ==========
+    local function footer()
+      return [[
+Honor. Integrity. Discipline.
+    ]]
+    end
+
+    dashboard.section.footer.val = footer()
+
+    -- ========== 4) HIGHLIGHTS (optional) ==========
+    dashboard.section.footer.opts.hl = "Type"
+    dashboard.section.header.opts.hl = "Include"
+    dashboard.section.buttons.opts.hl = "Keyword"
+
+    -- ========== 5) Final Setup ==========
+    dashboard.opts.opts.noautocmd = true
     alpha.setup(dashboard.opts)
   end,
 }

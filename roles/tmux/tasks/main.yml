@@ -3,6 +3,11 @@
   ansible.builtin.include_tasks: "Debian.yml"
   when: ansible_os_family == "Debian"
 
+- name: "Tmux | Backup existing TPM directory"
+  ansible.builtin.command:
+    cmd: mv ~/.tmux/plugins/tpm ~/.tmux/plugins/tpm.old
+  ignore_errors: true
+
 - name: "Tmux | Install TPM"
   ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
