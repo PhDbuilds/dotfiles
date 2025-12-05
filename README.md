@@ -73,6 +73,7 @@ ansible-playbook main.yml --ask-become-pass --limit localhost --tags "neovim,tmu
 - **tmux**: Terminal multiplexer with custom configuration
 - **zsh**: Modern shell with oh-my-zsh
 - **colorls**: Colorized ls command with icons
+- **Lazygit**: Cool git UI util for lazy people
 
 ## Adding New Tools
 
