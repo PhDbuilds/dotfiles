@@ -8,4 +8,4 @@
   ansible.builtin.gem:
     name: colorls
     state: present
-    user_install: false
+    user_install: true
