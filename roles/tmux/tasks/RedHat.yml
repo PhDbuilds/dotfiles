@@ -1,0 +1,6 @@
+---
+- name: "Tmux | RedHat-family | Install tmux"
+  ansible.builtin.dnf:
+    name: tmux
+    state: present
+  become: true

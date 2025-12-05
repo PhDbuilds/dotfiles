@@ -27,6 +27,16 @@
       when: ansible_os_family == "Darwin" and not homebrew_check.stat.exists
       become: false
 
+    - name: Ensure required base packages are installed (RedHat/Fedora)
+      ansible.builtin.package:
+        name:
+          - git
+          - curl
+          - dnf-plugins-core  # Needed for managing repositories
+        state: present
+      when: ansible_os_family == "RedHat"
+      become: true
+
 
   tasks:
     - name: Set up Neovim
