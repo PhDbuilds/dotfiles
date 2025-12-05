@@ -1,0 +1,19 @@
+---
+- name: "Colorls | RedHat-family | Install Ruby and dependencies"
+  ansible.builtin.dnf:
+    name:
+      - ruby
+      - ruby-devel
+      - gcc
+      - gcc-c++
+      - make
+      - redhat-rpm-config
+    state: present
+  become: true
+
+- name: "Colorls | RedHat-family | Install colorls gem"
+  ansible.builtin.gem:
+    name: colorls
+    state: present
+    user_install: false
+  become: true

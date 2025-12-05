@@ -50,3 +50,7 @@
     - name: Set up Zsh
       ansible.builtin.include_role:
         name: zsh
+
+    - name: Set up colorls
+      ansible.builtin.include_role:
+        name: colorls

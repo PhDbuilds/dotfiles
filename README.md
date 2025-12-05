@@ -1,5 +1,5 @@
 # ansible-dev-setup
-Cross-platform development environment setup using Ansible. Supports Ubuntu, Debian, Kali Linux, Fedora, and macOS.
+Cross-platform development environment setup using Ansible. Supports Ubuntu, Debian, Fedora, and macOS.
 
 [TechDufus](https://github.com/TechDufus/dotfiles) was a huge inspiration for this project 
 ## Installation
@@ -71,4 +71,5 @@ ansible-playbook main.yml --ask-become-pass --limit localhost --tags "neovim,tmu
 
 - **Neovim**: Modern Vim-based editor with comprehensive Lua configuration
 - **tmux**: Terminal multiplexer with custom configuration
-- **zsh**: Modern shell
+- **zsh**: Modern shell with oh-my-zsh
+- **colorls**: Colorized ls command with icons

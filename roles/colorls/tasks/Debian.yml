@@ -1,0 +1,16 @@
+---
+- name: "Colorls | Debian-family | Install Ruby and dependencies"
+  ansible.builtin.apt:
+    name:
+      - ruby
+      - ruby-dev
+      - build-essential
+    state: present
+  become: true
+
+- name: "Colorls | Debian-family | Install colorls gem"
+  ansible.builtin.gem:
+    name: colorls
+    state: present
+    user_install: false
+  become: true
