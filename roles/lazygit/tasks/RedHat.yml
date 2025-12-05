@@ -1,0 +1,12 @@
+---
+- name: "Lazygit | RedHat-family | Add Lazygit COPR repository"
+  ansible.builtin.command:
+    cmd: dnf copr enable atim/lazygit -y
+  become: true
+  changed_when: false
+
+- name: "Lazygit | RedHat-family | Install Lazygit"
+  ansible.builtin.dnf:
+    name: lazygit
+    state: present
+  become: true

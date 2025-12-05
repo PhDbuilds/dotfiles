@@ -1,0 +1,12 @@
+---
+- name: "{{ role_name }} | Run Debian-family tasks"
+  ansible.builtin.include_tasks: "Debian.yml"
+  when: ansible_os_family == "Debian"
+
+- name: "{{ role_name }} | Run Darwin tasks"
+  ansible.builtin.include_tasks: "Darwin.yml"
+  when: ansible_os_family == "Darwin"
+
+- name: "{{ role_name }} | Run RedHat-family tasks"
+  ansible.builtin.include_tasks: "RedHat.yml"
+  when: ansible_os_family == "RedHat"

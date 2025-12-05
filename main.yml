@@ -54,3 +54,7 @@
     - name: Set up colorls
       ansible.builtin.include_role:
         name: colorls
+
+    - name: Set up Lazygit
+      ansible.builtin.include_role:
+        name: lazygit
