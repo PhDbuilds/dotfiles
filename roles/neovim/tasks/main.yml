@@ -7,6 +7,10 @@
   ansible.builtin.include_tasks: "Darwin.yml"
   when: ansible_os_family == "Darwin"
 
+- name: "{{ role_name }} | Run RedHat-family tasks"
+  ansible.builtin.include_tasks: "RedHat.yml"
+  when: ansible_os_family == "RedHat"
+
 - name: "Neovim | Config folder"
   ansible.builtin.file:
     mode: "0755"

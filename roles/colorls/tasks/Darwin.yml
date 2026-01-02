@@ -1,0 +1,11 @@
+---
+- name: "Colorls | Darwin | Install Ruby"
+  community.general.homebrew:
+    name: ruby
+    state: present
+
+- name: "Colorls | Darwin | Install colorls gem"
+  ansible.builtin.gem:
+    name: colorls
+    state: present
+    user_install: true

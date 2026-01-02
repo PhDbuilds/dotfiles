@@ -10,14 +10,3 @@
 - name: "{{ role_name }} | Run RedHat-family tasks"
   ansible.builtin.include_tasks: "RedHat.yml"
   when: ansible_os_family == "RedHat"
-
-- name: "Zsh | Configure Zsh"
-  ansible.builtin.copy:
-    src: zshrc
-    dest: "{{ ansible_user_dir }}/.zshrc"
-    mode: "0644"
-    force: true
-
-- name: "Zsh | Set user shell to zsh"
-  ansible.builtin.shell: chsh -s /bin/zsh {{ ansible_user_id }}
-  become: true

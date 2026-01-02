@@ -1,0 +1,14 @@
+---
+- name: "Lazygit | Debian-family | Add Lazygit PPA (Ubuntu/Debian only)"
+  ansible.builtin.apt_repository:
+    repo: ppa:lazygit-team/release
+    state: present
+    update_cache: true
+  become: true
+  when: ansible_distribution != "Kali"
+
+- name: "Lazygit | Debian-family | Install Lazygit"
+  ansible.builtin.apt:
+    name: lazygit
+    state: present
+  become: true

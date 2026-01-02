@@ -3,6 +3,14 @@
   ansible.builtin.include_tasks: "Debian.yml"
   when: ansible_os_family == "Debian"
 
+- name: "Tmux | Run Darwin tasks"
+  ansible.builtin.include_tasks: "Darwin.yml"
+  when: ansible_os_family == "Darwin"
+
+- name: "Tmux | Run RedHat-family tasks"
+  ansible.builtin.include_tasks: "RedHat.yml"
+  when: ansible_os_family == "RedHat"
+
 - name: "Tmux | Backup existing TPM directory"
   ansible.builtin.command:
     cmd: mv ~/.tmux/plugins/tpm ~/.tmux/plugins/tpm.old

@@ -1,0 +1,21 @@
+---
+- name: "Neovim | RedHat-family | Dependencies"
+  ansible.builtin.dnf:
+    name:
+      - cmake
+      - curl
+      - pkg-config
+      - libtool
+      - unzip
+      - ripgrep
+      - gcc
+      - gcc-c++
+      - make
+    state: present
+  become: true
+
+- name: "Neovim | RedHat-family | Install Neovim"
+  ansible.builtin.dnf:
+    name: neovim
+    state: latest
+  become: true

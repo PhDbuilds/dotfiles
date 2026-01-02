@@ -1,0 +1,50 @@
+---
+- name: "Zsh | RedHat-family | Install"
+  ansible.builtin.dnf:
+    name: zsh
+    state: present
+  become: true
+
+- name: "Zsh | Download ohmyzsh"
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: "{{ ansible_user_dir }}/install.sh"
+    mode: '0755'
+
+- name: "Zsh | Install ohmyzsh"
+  ansible.builtin.script:
+    cmd: "{{ ansible_user_dir }}/install.sh"
+    creates: "{{ ansible_user_dir }}/.oh-my-zsh"
+
+- name: "Zsh | Create fonts directory"
+  ansible.builtin.file:
+    path: /usr/share/fonts/Meslo
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: "Zsh | Download NerdFonts"
+  ansible.builtin.get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Meslo.zip
+    dest: "{{ ansible_user_dir }}/Meslo.zip"
+
+- name: "Zsh | Create Meslo extraction directory"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/Meslo"
+    state: directory
+    mode: '0755'
+
+- name: "Zsh | Install font files"
+  ansible.builtin.unarchive:
+    src: "{{ ansible_user_dir }}/Meslo.zip"
+    dest: "{{ ansible_user_dir }}/Meslo"
+    remote_src: yes
+
+- name: "Zsh | Move font files to fonts directory"
+  ansible.builtin.copy:
+    src: "{{ ansible_user_dir }}/Meslo/"
+    dest: "/usr/share/fonts/Meslo/"
+    owner: root
+    mode: '0644'
+    remote_src: yes
+  become: true
