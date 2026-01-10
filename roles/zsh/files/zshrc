@@ -42,7 +42,7 @@ alias blog=' /Users/logan/Blog/phdbuilds/updateblog.sh'
 
 # Created by `pipx` on 2024-07-02 11:15:02
 #export PATH="$PATH:/Users/logan/.local/bin:/Users/logan/perl5/bin${PATH:+:${PATH}}:/Users/logan/go/bin/fabric"
-export PATH="$PATH:/Users/logan/.local/bin:/Users/logan/perl5/bin:/Users/logan/go/bin/"
+export PATH="$PATH:/Users/logan/.local/bin:/Users/logan/perl5/bin:/Users/logan/go/bin/:/home/astronuat/go/bin/"
 
 if [ -f "/Users/logan/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/logan/.config/fabric/fabric-bootstrap.inc"; fi
 
