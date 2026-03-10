@@ -21,8 +21,35 @@
     state: present
   become: true
 
-- name: "Neovim | RedHat-family | Install Neovim"
+# Fedora ships recent neovim in its repos
+- name: "Neovim | Fedora | Install Neovim"
   ansible.builtin.dnf:
     name: neovim
     state: latest
   become: true
+  when: ansible_distribution == "Fedora"
+
+# AlmaLinux/RHEL/Rocky repos ship old neovim — install from upstream binary tarball
+- name: "Neovim | RedHat non-Fedora | Download Neovim tarball"
+  ansible.builtin.get_url:
+    url: "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
+    dest: "/tmp/nvim-linux-x86_64.tar.gz"
+    mode: "0644"
+  when: ansible_distribution != "Fedora"
+
+- name: "Neovim | RedHat non-Fedora | Extract Neovim"
+  ansible.builtin.unarchive:
+    src: "/tmp/nvim-linux-x86_64.tar.gz"
+    dest: "/opt"
+    remote_src: true
+  become: true
+  when: ansible_distribution != "Fedora"
+
+- name: "Neovim | RedHat non-Fedora | Symlink nvim binary"
+  ansible.builtin.file:
+    src: "/opt/nvim-linux-x86_64/bin/nvim"
+    dest: "/usr/local/bin/nvim"
+    state: link
+    force: true
+  become: true
+  when: ansible_distribution != "Fedora"

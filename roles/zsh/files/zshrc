@@ -21,6 +21,11 @@ alias ls='colorls'
 
 export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin"
 
+# Add Ruby user gem binaries to PATH (for user-installed gems like colorls)
+if command -v ruby &>/dev/null; then
+  export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+fi
+
 set -o vi
 bindkey -M viins '^F' autosuggest-accept
 

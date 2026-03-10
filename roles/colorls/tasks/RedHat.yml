@@ -15,5 +15,4 @@
   community.general.gem:
     name: colorls
     state: present
-    user_install: false
-  become: true
+    user_install: true
