@@ -9,7 +9,7 @@
   become: true
 
 - name: "Colorls | Debian-family | Install colorls gem"
-  ansible.builtin.gem:
+  community.general.gem:
     name: colorls
     state: present
     user_install: false

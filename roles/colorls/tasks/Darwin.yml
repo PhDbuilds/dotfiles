@@ -5,7 +5,7 @@
     state: present
 
 - name: "Colorls | Darwin | Install colorls gem"
-  ansible.builtin.gem:
+  community.general.gem:
     name: colorls
     state: present
     user_install: true
