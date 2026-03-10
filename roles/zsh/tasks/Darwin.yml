@@ -19,3 +19,10 @@
   community.general.homebrew_cask:
     name: font-meslo-lg-nerd-font
     state: present
+
+- name: "Zsh | Deploy macOS-specific zshrc.local"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/zshrc.local.darwin"
+    dest: "{{ ansible_user_dir }}/.zshrc.local"
+    state: link
+    force: true

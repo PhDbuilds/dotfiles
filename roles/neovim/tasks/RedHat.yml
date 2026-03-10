@@ -1,4 +1,11 @@
 ---
+- name: "Neovim | RedHat-family | Enable EPEL"
+  ansible.builtin.dnf:
+    name: epel-release
+    state: present
+  become: true
+  when: ansible_distribution != "Fedora"
+
 - name: "Neovim | RedHat-family | Dependencies"
   ansible.builtin.dnf:
     name:

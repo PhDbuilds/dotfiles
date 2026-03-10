@@ -12,10 +12,10 @@
   when: ansible_os_family == "RedHat"
 
 - name: "Zsh | Configure Zsh"
-  ansible.builtin.copy:
-    src: zshrc
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/zshrc"
     dest: "{{ ansible_user_dir }}/.zshrc"
-    mode: "0644"
+    state: link
     force: true
 
 - name: "Zsh | Set user shell to zsh"
