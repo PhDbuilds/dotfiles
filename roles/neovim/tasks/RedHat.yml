@@ -45,6 +45,15 @@
   become: true
   when: ansible_distribution != "Fedora"
 
+- name: "Neovim | RedHat non-Fedora | Set permissions on nvim directory"
+  ansible.builtin.file:
+    path: "/opt/nvim-linux-x86_64"
+    state: directory
+    mode: "0755"
+    recurse: true
+  become: true
+  when: ansible_distribution != "Fedora"
+
 - name: "Neovim | RedHat non-Fedora | Symlink nvim binary"
   ansible.builtin.file:
     src: "/opt/nvim-linux-x86_64/bin/nvim"
