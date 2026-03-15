@@ -31,3 +31,8 @@ bindkey -M viins '^F' autosuggest-accept
 
 # Source machine/OS-specific config if it exists
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+eval "$(direnv hook zsh)"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/bao bao
