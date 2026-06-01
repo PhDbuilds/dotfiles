@@ -20,14 +20,6 @@ alias ll='ls -l'
 
 export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin:$HOME/.cargo/bin/"
 
-# Add Ruby user gem binaries to PATH (for user-installed gems like colorls)
-if command -v ruby &>/dev/null; then
-  export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
-fi
-
-set -o vi
-bindkey -M viins '^F' autosuggest-accept
-
 # Source machine/OS-specific config if it exists
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
