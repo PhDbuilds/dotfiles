@@ -17,9 +17,8 @@ source $ZSH/oh-my-zsh.sh
 
 alias vim='nvim'
 alias ll='ls -l'
-alias ls='colorls'
 
-export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin:$HOME/.cargo/bin/"
 
 # Add Ruby user gem binaries to PATH (for user-installed gems like colorls)
 if command -v ruby &>/dev/null; then
