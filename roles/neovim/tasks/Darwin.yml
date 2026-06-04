@@ -7,6 +7,7 @@
       - libtool
       - unzip
       - ripgrep
+      - tree-sitter-cli
     state: present
 
 - name: "Neovim | {{ ansible_distribution }} | Install"

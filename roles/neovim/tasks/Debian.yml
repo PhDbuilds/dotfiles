@@ -24,3 +24,17 @@
     state: latest
   become: true
 
+# nvim-treesitter's `main` branch compiles parsers with the tree-sitter CLI,
+# which isn't packaged in apt — install the prebuilt binary from GitHub releases.
+- name: "Neovim | Debian-family | Install tree-sitter CLI"
+  ansible.builtin.shell:
+    cmd: >
+      set -o pipefail &&
+      curl -fsSL https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz
+      | gunzip -c > /usr/local/bin/tree-sitter &&
+      chmod 0755 /usr/local/bin/tree-sitter
+    creates: /usr/local/bin/tree-sitter
+  args:
+    executable: /bin/bash
+  become: true
+
